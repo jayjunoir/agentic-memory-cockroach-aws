@@ -1,0 +1,15 @@
+# Environment variables containing sensitive secrets
+.env
+.env*.local
+*.env
+
+# Python bytecode & virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# IDE files
+.vscode/
+.idea/
