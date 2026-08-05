@@ -4,8 +4,6 @@ import { query } from '@/lib/db';
 
 export async function GET() {
   try {
-    // 1. Fetch recent incidents with agent actions
-    // Replaced i.created_at with a fallback/safe selection
     const incidentsRes = await query(`
       SELECT 
         i.incident_id,
@@ -24,17 +22,9 @@ export async function GET() {
       LIMIT 10;
     `);
 
-    // 2. Fetch raw alerts stats
-    const alertsRes = await query(`
-      SELECT status, COUNT(*) as count 
-      FROM alerts 
-      GROUP BY status;
-    `);
-
     return NextResponse.json({
       success: true,
       incidents: incidentsRes.rows,
-      alertStats: alertsRes.rows,
     });
   } catch (error: any) {
     console.error('Error fetching dashboard data:', error);
